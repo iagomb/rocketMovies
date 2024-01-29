@@ -1,11 +1,29 @@
+import { useState } from 'react'
+
+import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 import { ButtonText } from '../../components/ButtonText'
-import { Input } from '../../components/Input'
-import { Background, Container, Form } from './styles'
-// import { FiMail, FiLock, FiArrowLeft} from 'react-icons/fi'
+
 import { FiMail, FiLock } from 'react-icons/fi'
+import { Background, Container, Form } from './styles'
+
+import {useAuth} from '../../hooks/auth'
 
 export function SignIn(){
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    const { signIn } = useAuth()
+
+    function handleSignIn() {
+        if (!email || !password) {
+            alert("Preencha todos os campos")
+        }
+
+        signIn({ email, password })
+        
+    }
+
     return(
         <Container>
             <Form>
@@ -14,14 +32,23 @@ export function SignIn(){
 
                 <h2>Faça seu login</h2>
 
-                <Input placeholder="E-mail" icon={FiMail}/>
-                <Input placeholder="Senha" icon={FiLock}/>
+                <Input 
+                    placeholder="E-mail" 
+                    icon={FiMail} 
+                    onChange={e=> setEmail(e.target.value)}
+                />
+                <Input 
+                    placeholder="Senha" 
+                    icon={FiLock}
+                    onChange={e=> setPassword(e.target.value)}
+                />
 
-                <Button title="Entrar"/>
+                <Button type="submit" title="Entrar" onClick={handleSignIn}/>
 
-                <ButtonText title="Criar conta" link="/register"/>
+                <ButtonText type="button"  title="Criar conta" link="/register" />
             </Form>
             <Background/>
         </Container>
     )
 }
+
