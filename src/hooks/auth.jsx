@@ -7,24 +7,16 @@ export  const AuthContext = createContext({})
 
 function AuthProvider({ children }) {
    const [data, setData] = useState({})
-
   
-   async function singIn({email, password}) {
-        if (!email || !password) {
-           alert("Preencha todos os campos")
-        }
-
+   async function signIn({email, password}) {
         try {
             const response = await api.post('/sessions', {email, password})
             const {user, token} = response.data
-            console.log(response.status);
-            console.log(user, token);
             
-            localStorage.setItem('@rocketmovies:user', JSON.stringify(user))
+            localStorage.setItem('@rocketmovies:user', JSON.stringify(user)) || [];
             localStorage.setItem('@rocketmovies:token', token)
             
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`
-            
             
             setData({user, token})
         } catch (error) {
@@ -38,7 +30,7 @@ function AuthProvider({ children }) {
 
     return(
         <AuthContext.Provider value={{
-            singIn,
+            signIn,
             user: data.user
         }}>
             {children}
@@ -54,5 +46,6 @@ function useAuth() {
 
 
 export{
-    AuthProvider, useAuth
+    AuthProvider, 
+    useAuth
 }

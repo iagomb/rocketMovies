@@ -7,18 +7,21 @@ import { ButtonText } from '../../components/ButtonText'
 import { FiMail, FiLock } from 'react-icons/fi'
 import { Background, Container, Form } from './styles'
 
-import {useAuth} from '../../hooks/auth'
+import { useAuth } from '../../hooks/auth'
+// import { api } from '../../services/api'
 
 export function SignIn(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const { signIn } = useAuth()
+    const { signIn}  = useAuth()
 
-    function handleSignIn() {
+    async function handleSignIn() {
         if (!email || !password) {
             alert("Preencha todos os campos")
         }
+
+        
 
         signIn({ email, password })
         
@@ -43,7 +46,7 @@ export function SignIn(){
                     onChange={e=> setPassword(e.target.value)}
                 />
 
-                <Button type="submit" title="Entrar" onClick={handleSignIn}/>
+                <Button type="button" title="Entrar" onClick={handleSignIn}/>
 
                 <ButtonText type="button"  title="Criar conta" link="/register" />
             </Form>
