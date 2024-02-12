@@ -15,7 +15,7 @@ export const Container = styled.div`
     footer{
         display: flex;
         gap: 40px;
-        button:first-child{
+        button{
             padding: 16px;
             background-color: ${({theme})=> theme.COLORS.BACKGROUND_900};
             color: ${({theme})=> theme.COLORS.RED};

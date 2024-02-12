@@ -48,7 +48,7 @@ export function New(){
             return alert("Você deixou uma tag no campo para adicionar, mas não clicou em adicionar. Clique para adicionar")
         }  
 
-        await api.post("/movie_notes", {
+        await api.post("/movienotes", {
             title,
             rating: note,
             description: sinopse,
@@ -94,13 +94,13 @@ export function New(){
                             <NoteItem 
                                 placeholder="Novo Marcador" 
                                 isNew 
+                                value={newTags}
                                 onChange={e=> setNewTags(e.target.value)}
                                 onClick={handleAddTags}
                             />   
                         </div>
                     </Tags>
                     <footer>
-                        <Button type="button" title="Excluir filme"/>
                         <Button type="button" title="Salvar alterações" onClick={handleNewMovies}/>
                     </footer>
                 </Form>

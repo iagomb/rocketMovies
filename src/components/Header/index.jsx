@@ -1,20 +1,40 @@
 import { Container, Content, Avatar} from './styles'
 import logo from '../../assets/logo.svg'
+import { useAuth } from '../../hooks/auth'
+import { useNavigate } from 'react-router-dom'
+import { api } from '../../services/api'
 
-export function Header(){
+import avatarPlaceholder from '../../assets/avatar.svg'
+
+export function Header({...rest}){
+
+    const { signOut, user } = useAuth()
+
+    const navigate = useNavigate()
+
+    const avatarUrl = user.url_image ? `${api.defaults.baseURL}/files/${user.url_image}`: avatarPlaceholder;
+
+    function handleProfile() {
+        navigate("/profile")
+    }
+    
+    function handleSignOut() {
+        navigate("/")
+        signOut()
+    }
     return(
         <Container>
             <Content>
-                <img src={logo} alt="" />
+                <img src={logo} alt={user.name} />
 
-                <input type="text" placeholder="Pesquisar pelo título"/>
+                <input type="text" placeholder="Pesquisar pelo título" {...rest}/>
 
-                <Avatar>
+                <Avatar onClick={handleProfile}>
                     <div>
-                        <strong>Iago Moreira</strong>
-                        <a href='#'>Sair</a>
+                        <strong>{user.avatar}</strong>
+                        <button type='button' onClick={handleSignOut}>Sair</button>
                     </div>
-                    <img src="https://github.com/iagomb.png" alt="" />
+                    <img src={avatarUrl} alt={user.name} />
                 </Avatar>
             </Content>
         </Container>

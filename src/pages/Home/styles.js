@@ -54,7 +54,7 @@ export const Container = styled.div`
 export const Content = styled.div`
     grid-area: content;
     max-width: 69.62rem;
-    height: 75vh;
+    height: 70vh;
 
     overflow: auto;
     padding-right: 24px;
@@ -72,43 +72,7 @@ export const Content = styled.div`
         display: flex;
         flex-direction: column;
         gap: 24px;
-        li{
-        border-radius: 16px;
-        background: rgba(255, 133, 155, 0.05);
-        padding: 32px;
-        
-            a {
-                h2{
-                        font-size: 24px;
-                        font-weight: 700;
-                        color: ${({theme})=> theme.COLORS.WHITE};
-                    } 
-
-                .stars{
-                    display: flex;
-                    align-items: center;
-                    gap: 6px;
-                }
-
-                .paragraph{
-                    width: 100%;
-                    height: 50px;
-
-                    margin-block: 15px;
-                    p{
-                        height: 100%;
-                        overflow: hidden;
-                        white-space: nowrap;
-                        
-                        text-overflow: ellipsis;
-        
-        
-                        color: ${({theme})=> theme.COLORS.GRAY_100};
-                    }
-                }
-                }
-            }        
-        }
+    }    
 `;
 
 export const Tags = styled.div`

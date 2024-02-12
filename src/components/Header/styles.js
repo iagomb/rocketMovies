@@ -34,11 +34,12 @@ export const Avatar = styled.div`
    display: flex;
    align-items:  center;
    gap: 9px;
+   cursor: pointer;
 
    > div{
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
+      align-items: end;
 
       > strong{
          width: 86px;
@@ -47,15 +48,19 @@ export const Avatar = styled.div`
          font-size: 14px;
          font-weight: 700;
 
-         display: flex;
+         display: inline-flex;
+         justify-content: flex-end;
          flex-wrap: nowrap;
       }  
       
-      > a{
+      > button{
          font-size: 14px;
          font-weight: 400;
 
          color: ${({theme})=> theme.COLORS.GRAY_100};
+         background: transparent;
+         border: none;
+         cursor: pointer;
       }
    }
 
@@ -64,5 +69,6 @@ export const Avatar = styled.div`
       width: 64px;
       
       border-radius: 50%;
+      object-fit: cover;
    }
 `; 

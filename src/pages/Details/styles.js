@@ -117,8 +117,14 @@ export const Content = styled.main`
         font-weight: 400;
         p:first-child{
             margin-bottom: 20px;
-
         }
+    }
+
+    .button button{
+        width: 31.25rem;
+        margin: 0 auto;
+        margin-top: 80px;
+        padding: 14px 140px;   
     }
 `;
 
